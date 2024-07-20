@@ -1,6 +1,6 @@
 local M = {}
 
-local defaultOpts = {
+M.options = {
 	theme = "retrobox",
 	useTabs = true,
 	indent = 4,
@@ -28,7 +28,7 @@ local function enableRelativeLineNumbers(val)
 end
 
 function M.apply()
-	local opts = require("neoconf").get("options", defaultOpts)
+	local opts = require("neoconf").get("options", M.options)
 
 	vim.cmd("colorscheme " .. opts.theme)
 	vim.o.number = enableLineNumbers(opts.lineNumbers)
@@ -41,7 +41,7 @@ function M.apply()
 end
 
 function M.setup(opts)
-	opts = vim.tbl_extend("force", defaultOpts, opts or {})
+	M.options = vim.tbl_extend("force", M.options, opts or {})
 
 	require("neoconf.plugins").register({
 		name = "options.nvim",
