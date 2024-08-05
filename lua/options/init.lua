@@ -51,51 +51,7 @@ function M.setup(opts)
 	require("neoconf.plugins").register({
 		name = "options.nvim",
 		on_schema = function(schema)
-			schema:set("options", {
-				type = "object",
-				properties = {
-					theme = {
-						description = "Set NeoVim colorscheme",
-						type = "string",
-						enum = vim.fn.getcompletion("", "color"),
-					},
-					indent = {
-						description = "Width of the indent",
-						type = "integer",
-						minimum = 2,
-					},
-					useTabs = {
-						description = "Use tab character for indentation",
-						type = "boolean",
-					},
-					rulers = {
-						description = "Code ruler markers",
-						type = "array",
-						items = {
-							type = "number",
-						},
-					},
-					wrap = {
-						description = "Enable line wrapping",
-						type = "boolean",
-					},
-					lineNumbers = {
-						description = "Display line numbering",
-						anyOf = {
-							{
-								type = "string",
-								enum = {
-									"both",
-									"relativeOnly",
-									"normalOnly",
-									"off",
-								},
-							},
-							{ type = "boolean" },
-						},
-					},
-				},
-			})
+			schema:set("options", require("options.schema"))
 		end,
 		on_update = function()
 			vim.notify("Updated NeoVim configuration", vim.log.levels.INFO)
