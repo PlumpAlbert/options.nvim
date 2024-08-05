@@ -7,6 +7,7 @@ M.options = {
 	rulers = { 80 },
 	wrap = false,
 	lineNumbers = "both",
+	shell = nil,
 }
 
 --- @param val boolean|"both"|"relativeOnly"|"normalOnly"|"off"
@@ -38,6 +39,10 @@ function M.apply()
 	vim.o.tabstop = opts.indent
 
 	vim.opt.colorcolumn = opts.rulers
+
+	if opts.shell ~= nil then
+		vim.opt.shell = opts.shell
+	end
 end
 
 function M.setup(opts)
