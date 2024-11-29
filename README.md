@@ -8,7 +8,10 @@ Define NeoVim options via `folke/neoconf.nvim` configuration file.
 > ```lua
 > return {
 >     "PlumpAlbert/options.nvim",
->     dependencies = { "folke/neoconf.nvim" },
+>     dependencies = {
+>         "folke/neoconf.nvim",
+>         "xiyaowong/transparent.nvim",
+>     },
 >     config = true,
 > }
 > ```
@@ -29,6 +32,8 @@ values to configure your NeoVim setup.
 >         "rulers": [ 80 ],
 >         "wrap": false,
 >         "lineNumbers": "both",
+>         "shell": "/bin/bash",
+>         "transparent": false,
 >     }
 > }
 > ```
