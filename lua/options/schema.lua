@@ -45,5 +45,9 @@ return {
 			type = { "string", "null" },
 			description = "Name of the shell to use for `!` and `:!` commands",
 		},
+		transparent = {
+			type = "boolean",
+			description = "Force transparent background",
+		},
 	},
 }

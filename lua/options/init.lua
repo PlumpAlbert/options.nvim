@@ -8,6 +8,7 @@ M.options = {
 	wrap = false,
 	lineNumbers = "both",
 	shell = nil,
+	transparent = false,
 }
 
 --- @param val boolean|"both"|"relativeOnly"|"normalOnly"|"off"
@@ -42,6 +43,17 @@ function M.apply()
 
 	if opts.shell ~= nil then
 		vim.opt.shell = opts.shell
+	end
+
+	local success, _ = pcall(require, "transparent")
+	if not success then
+		return
+	end
+
+	if opts.transparent then
+		vim.cmd("TransparentEnable")
+	else
+		vim.cmd("TransparentDisable")
 	end
 end
 
