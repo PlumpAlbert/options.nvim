@@ -47,7 +47,10 @@ function M.apply()
 
 	local success, _ = pcall(require, "transparent")
 	if not success then
-		vim.notify("transparent is not available", vim.log.levels.INFO)
+		vim.notify(
+			"`xiyaowong/transparent.nvim` is not installed",
+			vim.log.levels.WARN
+		)
 		return
 	end
 
