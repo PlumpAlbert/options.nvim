@@ -30,6 +30,8 @@ local function enableRelativeLineNumbers(val)
 end
 
 function M.apply()
+	require("options.formatters").load()
+
 	local opts = require("neoconf").get("options", M.options)
 
 	vim.cmd("colorscheme " .. opts.theme)
@@ -68,16 +70,6 @@ function M.setup(opts)
 		name = "options.nvim",
 		on_schema = function(schema)
 			schema:set("options", require("options.schema"))
-
-			schema:set("formatters", {
-				type = "object",
-				description = "Map of ft/formatters (conform.nvim style)",
-				additionalProperties = {
-					type = "array",
-					description = "List of formatters for specified file type",
-					items = { type = "string" },
-				},
-			})
 		end,
 		on_update = function()
 			vim.notify("Updated NeoVim configuration", vim.log.levels.INFO)
@@ -87,6 +79,8 @@ function M.setup(opts)
 			M.apply()
 		end,
 	})
+
+	require("options.formatters").init()
 end
 
 return M
