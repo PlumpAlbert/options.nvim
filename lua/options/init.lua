@@ -8,7 +8,7 @@ M.options = {
 	wrap = false,
 	lineNumbers = "both",
 	shell = nil,
-	transparent = false,
+	transparent = true,
 }
 
 --- @param val boolean|"both"|"relativeOnly"|"normalOnly"|"off"
